@@ -66,59 +66,154 @@ function main() {
 
     // Print the perimeter of the circle:
     console.log(2 * PI * r);
+}
 
-    //--Day 2: conditional statements
+//--Day 2: conditional statements
 
-    function getGrade(score) {
-        let grade;
-        // Write your code here
-        if (score > 25 && score <= 30) { grade = "A" };
-        else if (score > 20 && score <= 25) { grade = "B" };
-        else if (score > 15 && score <= 20) { grade = "C" };
-        else if (score > 10 && score <= 15) { grade = "D" };
-        else if (score > 5 && score <= 10) { grade = "E" };
-        else if (score > 0 && score <= 5) { grade = "F" };
+function getGrade(score) {
+    let grade;
+    // Write your code here
+    if (score > 25 && score <= 30) { grade = "A" };
+    else if (score > 20 && score <= 25) { grade = "B" };
+    else if (score > 15 && score <= 20) { grade = "C" };
+    else if (score > 10 && score <= 15) { grade = "D" };
+    else if (score > 5 && score <= 10) { grade = "E" };
+    else if (score > 0 && score <= 5) { grade = "F" };
 
-        return grade;
+    return grade;
+}
+
+//--Day 2: conditional statement switch
+
+function getLetter(s) {
+    let letter;
+    // Write your code here
+    switch (true) {
+        case "aeiou".includes(s[0]):
+            //"aeiou".includes(s[0]):
+            letter = "A"
+            break;
+        case "bcdfg".includes(s[0]):
+            //"bcdfg".includes(s[0]):
+            letter = "B"
+            break;
+        case "hjklm".includes(s[0]):
+            letter = "C"
+            break;
+        default:
+            letter = "D";
     }
 
-    //--Day 2: conditional statement switch
+    return letter;
+}
 
-    function getLetter(s) {
-        let letter;
-        // Write your code here
-        switch (true) {
-            case "aeiou".includes(s[0]):
-                //"aeiou".includes(s[0]):
-                letter = "A"
-                break;
-            case "bcdfg".includes(s[0]):
-                //"bcdfg".includes(s[0]):
-                letter = "B"
-                break;
-            case "hjklm".includes(s[0]):
-                letter = "C"
-                break;
-            default:
-                letter = "D";
+//--Day 2: loops
+
+function vowelsAndConsonants(s) {
+    const vowels = "aeiou";
+    var consonants = '';
+
+    for (var i = 0; i < s.length; i++) {
+        if (vowels.includes(s[i])) {
+            console.log(s[i]);
+        } else {
+            consonants += s[i] + '\n';
         }
-
-        return letter;
     }
 
-    //--Day 2: loops
+    console.log(consonants.trim());
+}
 
-    function vowelsAndConsonants(s) {
-        const vowels = "aeiou";
-        var consonants = '';
+//--Day 3: Arrays
 
-        for (var i = 0; i < s.length; i++) {
-            if (vowels.includes(s[i])) {
-                console.log(s[i]);
-            } else {
-                consonants += s[i] + '\n';
-            }
+function getSecondLargest(nums) {
+    // Complete the function
+    let maxValue = nums.reduce(function(a, b) {
+        return Math.max(a, b);
+    })
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (nums[i] == maxValue) {
+            nums.splice(i, 1)
         }
-
-        console.log(consonants.trim());
     }
+    let secondMaxValue = nums.reduce(function(a, b) {
+        return Math.max(a, b);
+    })
+
+    return secondMaxValue;
+}
+
+//-- Day 3: Try catch and Finally
+
+function reverseString(s) {
+    try {
+        s = s.split('').reverse().join('');
+    } catch (e) {
+        console.log(e.message);
+    } finally {
+        console.log(s)
+    }
+}
+
+//-- Day 3: Throw
+
+function isPositive(a) {
+    if (a > 0) {
+        return "YES";
+    } else if (a == 0) {
+        throw new Error("Zero Error");
+    } else {
+        throw new Error("Negative Error");
+    }
+}
+
+//--Day 4: create a rectangle object
+
+function Rectangle(a, b) {
+
+    let length = a;
+    let width = b;
+    let perimeter = (a + b) * 2;
+    let area = (a * b);
+
+    return { "length": length, "width": width, "perimeter": perimeter, "area": area };
+}
+
+//--Day 4: count objects
+
+function getCount(objects) {
+
+    return objects.filter(element => { return element.x === element.y }).length
+}
+
+//--Day 4: classes
+
+class Polygon {
+    constructor(lengths) {
+        this.lengths = lengths;
+    }
+
+    perimeter() {
+        let sum = this.lengths.reduce((a, b) => a + b);
+        return sum;
+    }
+}
+
+//-- Day 5: inheritance
+
+class Rectangle {
+    constructor(w, h) {
+        this.w = w;
+        this.h = h;
+    }
+}
+
+Rectangle.prototype.area = function() {
+    return this.w * this.h;
+}
+
+class Square extends Rectangle {
+    constructor(a) {
+        super(a, a)
+    }
+}
