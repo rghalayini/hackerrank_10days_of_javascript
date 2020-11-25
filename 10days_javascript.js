@@ -217,3 +217,67 @@ class Square extends Rectangle {
         super(a, a)
     }
 }
+
+//--Day 5: Template literals
+function(literals, expressions) {
+    let [A, P] = expressions;
+    let root = Math.sqrt((P * P) - 16 * A);
+    let s1 = (P + root) / 4;
+    let s2 = (P - root) / 4;
+    return [s2, s1];
+}
+
+//--Day 5: arrow functions
+// Each function is a simplification of the previous
+// All are correct, but it's better to simplify the code
+function modifyArray(nums) {
+    var something = function(n) {
+        if (n % 2 == 0)
+            return n * 2;
+        else
+            return n * 3;
+    }
+    var newArray = nums.map(something);
+    return newArray;
+}
+
+function modifyArray(nums) {
+    var something = function(n) {
+        var a = (n % 2 == 0) ? n * 2 : n * 3;
+        return a;
+    }
+    var newArray = nums.map(something);
+    return newArray;
+}
+
+function modifyArray(nums) {
+    var something = n => n = (n % 2 == 0) ? n * 2 : n * 3;
+    var newArray = nums.map(something);
+    return newArray;
+}
+
+function modifyArray(nums) {
+    var newArray = nums.map(n => n = (n % 2 == 0) ? n * 2 : n * 3);
+    return newArray;
+}
+
+function modifyArray(nums) {
+    return nums.map(n => n = (n % 2 == 0) ? n * 2 : n * 3);
+}
+
+//--Day 6: JavaScript dates
+
+function getDayName(dateString) {
+
+    // Write your code here
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    const date = new Date(dateString).getUTCDay();
+    return days[date];
+}
+
+//--Day 6: Bitwise operators
+
+function getMaxLessThanK(n, k) {
+    return ((k | k - 1) > n) ? (k - 2) : (k - 1)
+}
