@@ -281,3 +281,204 @@ function getDayName(dateString) {
 function getMaxLessThanK(n, k) {
     return ((k | k - 1) > n) ? (k - 2) : (k - 1)
 }
+
+//--Day 7: regular expressions 1
+function regexVar() {
+    /*
+     * Declare a RegExp object variable named 're'
+     * It must match a string that starts and ends with the same vowel (i.e., {a, e, i, o, u})
+     */
+    const re = new RegExp('^([aeiou]).+\\1$')
+
+    /*
+     * Do not remove the return statement
+     */
+    return re;
+}
+
+//--Day 7: regular expressions 2
+function regexVar() {
+    /*
+     * Declare a RegExp object variable named 're'
+     * It must match a string that starts with 'Mr.', 'Mrs.', 'Ms.', 'Dr.', or 'Er.', 
+     * followed by one or more letters.
+     */
+    const re = new RegExp('^(Mr|Mrs|Ms|Dr|Er)(\\.)([a-zA-z])*$')
+
+
+    /*
+     * Do not remove the return statement
+     */
+    return re;
+}
+
+//--Day 7: regular expression 3
+function regexVar() {
+    /*
+     * Declare a RegExp object variable named 're'
+     * It must match ALL occurrences of numbers in a string.
+     */
+    let re = new RegExp('\\d+', 'g')
+        /*
+         * Do not remove the return statement
+         */
+    return re;
+}
+
+//--Day 8 create a button
+
+
+{
+    /* <html>
+            <head>
+                <link rel="stylesheet" href="css/button.css" type="text/css">
+                // .btnClass {
+        //     width: 96px;
+        //     height: 48px;
+        //     font-size: 24px;
+                // }
+            </head>
+            
+            <body>
+                <script src="js/button.js" type="text/javascript"></script>
+            </body>
+        </html> */
+}
+let btn = document.createElement("Button");
+btn.innerHTML = "0";
+btn.id = "btn";
+btn.className = "btnClass";
+document.body.appendChild(btn);
+btn.onclick = function() {
+    btn.innerHTML++;
+}
+
+
+
+//--Day 8: buttons container
+
+//css in head
+//     <style>
+//     .buttonContainer {
+//         width: 20%;
+//     }
+
+//     .buttonContainer>.buttonClass {
+//         width: 33%;
+//         height: 48px;
+//         font-size: 16px;
+//     }
+//      </style>
+//div in body
+//  <div id="btns" class="buttonClass">
+//     <button id="btn1" class="btnStyle">1</button>
+//     <button id="btn2" class="btnStyle">2</button>
+//     <button id="btn3" class="btnStyle">3</button>
+//     <button id="btn4" class="btnStyle">4</button>
+//     <button id="btn5" class="btnStyle" onClick="rotate()">5</button>
+//     <button id="btn6" class="btnStyle">6</button>
+//     <button id="btn7" class="btnStyle">7</button>
+//     <button id="btn8" class="btnStyle">8</button>
+//     <button id="btn9" class="btnStyle">9</button>
+//   </div>
+
+//javascript <Script>
+let l = "4";
+let a = ["1", "2", "3", "6", "9", "8", "7", "4"];
+let b = ["1", "2", "3", "6", "9", "8", "7", "4"];
+
+let rotate = function() {
+    for (let i = 7; i > 0; i--) {
+        a[i] = a[i - 1];
+    }
+
+    a[0] = l;
+    l = a[7];
+
+    for (let i = 0; i < 8; i++) {
+        document.getElementById("btn" + b[i]).innerText = a[i];
+    }
+}
+
+
+//day 9: binary calculator
+
+//in body
+{
+    /* <div id="res"></div>
+    <div id="btns" class="btnContainer">
+        <button id="btn0" class="btnStyle1" onclick="buttonClicked(event)">0</button>
+        <button id="btn1" class="btnStyle1" onclick="buttonClicked(event)">1</button>
+        <button id="btnClr" class="btnStyle2" onclick="buttonClicked(event)">C</button>
+        <button id="btnEql" class="btnStyle2" onclick="buttonClicked(event)">=</button>
+        <button id="btnSum" class="btnStyle3" onclick="buttonClicked(event)">+</button>
+        <button id="btnSub" class="btnStyle3" onclick="buttonClicked(event)">-</button>
+        <button id="btnMul" class="btnStyle3" onclick="buttonClicked(event)">*</button>
+        <button id="btnDiv" class="btnStyle3" onclick="buttonClicked(event)">/</button>
+    </div>
+
+    <script src="js/binaryCalculator.js" type="text/javascript"></script> */
+}
+
+// #res {
+//     width: 81%;
+//     height: 48px;
+//     font-size: 20px;
+//     background: #d3d3d3;
+//     border: solid;
+// }
+
+// .btnContainer {
+//     width: 90%;
+// }
+
+// .btnContainer > .btnStyle1, .btnStyle2, .btnStyle3 {
+//     width: 22%;
+//     height: 36px;
+//     font-size: 18px;
+// }
+
+// .btnContainer > .btnStyle1 {
+//     background: lightgreen;
+//     color: brown;
+// }
+
+// .btnContainer > .btnStyle2 {
+//     background: darkgreen;
+//     color: white;
+// }
+
+// .btnContainer > .btnStyle3 {
+//     background: black;
+//     color: red;
+// }
+
+var opr = "";
+
+var screen = document.getElementById("res");
+screen.innerHTML = "";
+
+function buttonClicked(e) {
+    console.log(e)
+    var btn = e.target || e.srcElement;
+
+    if (btn.id != "btnClr" && btn.id != "btnEql") {
+        screen.innerHTML += btn.innerHTML;
+
+        if (btn.id != "btn0" && btn.id != "btn1") {
+            opr = btn.innerHTML;
+        }
+    } else if (btn.id == "btnEql") {
+        var str = screen.innerHTML.split(opr);
+        var op1 = str[0];
+        var op2 = str[1];
+
+        /* The double bitwise NOT ('~~') is a shortcut for Math.floor() */
+        screen.innerHTML = (~~eval(parseInt(op1, 2) + opr + parseInt(op2, 2))).toString(2);
+
+        opr = "";
+    } else if (btn.id == "btnClr") {
+        screen.innerHTML = "";
+        opr = "";
+    }
+}
