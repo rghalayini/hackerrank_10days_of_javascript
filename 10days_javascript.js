@@ -475,7 +475,6 @@ function buttonClicked(e) {
 
         /* The double bitwise NOT ('~~') is a shortcut for Math.floor() */
         screen.innerHTML = (~~eval(parseInt(op1, 2) + opr + parseInt(op2, 2))).toString(2);
-
         opr = "";
     } else if (btn.id == "btnClr") {
         screen.innerHTML = "";
